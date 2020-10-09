@@ -1,0 +1,35 @@
+canvas{
+height:calc(1vh*15);width:calc(1vw*27);border:1px solid black;border-radius:calc(1vw*(3.1416*2)*4);background: #990000;
+}
+nav{
+  width:25vw;
+  height:calc(4em + 4vw);
+}
+nav ul{
+  height:calc(1em + 1vw);
+  width:25vw;
+  font-size: 3em;
+}
+nav ul{
+  overflow:hidden; 
+  overflow-y:scroll;
+}
+ul{
+  list-style: none;
+}
+.menuPrincipal{
+ width:calc(100vw / 2.5);height:98vh;background:#ffffff88;display:grid;grid-template-rows:repeat(auto-fill, minmax(2em,1fr));font-size:calc(1em + 1vh);
+}
+.menuPrincipal > li:hover{
+ background: #ffbb9988;
+}
+
+.encabezado{
+display:grid;grid-template-columns:repeat(3,1fr);height:7vh;background:#ff9911;
+}
+.encabezado > p{
+grid-column: 2 / span 3;font-size:calc(2vh + 1vw)
+}
+.encabezado > img{
+height:7vh;width:10vh;
+}

@@ -1,0 +1,158 @@
+/*_______________BACKGROUNDS______________*/
+.orangePastel/*fresh*/{
+  background: #fac560;
+}
+/*________________CONTAINER_______________*/
+.box_text{
+  height:50%;
+  width:90vw;
+  margin: none;
+  padding: none;
+  margin-right:5vw;
+  margin-left:5vw;
+  padding-right:.1em;
+  padding-left:.1em;
+  text-align: center;
+}
+.box_list{
+  height: calc(1em*4 + 1vh);
+  width: calc(4em*4 + 2vw);
+  padding:none;
+  margin: none;
+  display:none;
+}
+.grid_box_list{
+  display: none;
+  height: calc(1em*4 + 1vh);
+  width: calc(3em*3.8 + 2vw);
+  text-align: center;
+}
+.grid_box_list > ul{
+  display:grid;
+}
+
+
+/*__________________LISTS_________________*/
+.subMenu{
+  height: 0%;
+  width:calc(1em*100%);
+  color:white;
+  font-size:calc(1em/4 + 1vw);
+  list-style:none;
+}
+.subMenu> li:hover{
+  background-color: #444444;
+}
+.subMenu > li {
+  background-color: #000000;
+  float:left;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.subMenu1{
+  height: 0%;
+  width:calc(1em*100%);
+  color:black;
+  font-size:calc(1em/4 + 1vw);
+  list-style:none;
+}
+.subMenu1 > li:hover{
+  background-color: #cccccc;
+}
+.subMenu1 > li {
+  background-color: #ffffff;
+  float:left;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.subMenu2{
+  height: 0%;
+  width:calc(1em*100%);
+  color:#ffffff88;
+  font-size:calc(1em/4 + 1vw);
+  list-style:none;
+}
+.subMenu2> li:hover{
+  background-color: #444444;
+}
+.subMenu2 > li {
+  background-color: #00000088;
+  float:left;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.subMenu3{
+  height: 0%;
+  width:calc(1em*100%);
+  color:black;
+  font-size:calc(1em/4 + 1vw);
+  list-style:none;
+}
+.subMenu3 > li:hover{
+  background-color: #cccccca8;
+}
+.subMenu3 > li {
+  background-color: #ffffffc8;
+  float:left;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+/*_________________BUTTONS________________*/
+.not_border_radius/*fresh*/{
+  height:calc(4em/2);
+  width:calc(12em/2);
+  text-align: center;
+  border:none;
+  border-radius:20vw;
+  background-color: #fada9f;
+  font-size: calc(1em/2 + 1vw);
+  font-weight: bold;
+  margin-bottom: 1%;
+}
+.not_border_radius:hover/*fresh*/{
+  height:calc(4em/2);
+  width:calc(12em/2);
+  text-align: center;
+  border:none;
+  border-radius:20vw;
+  background-color: #da8a16;
+  font-size: calc(1em/3 + 1vw);
+  font-weight: bold;
+}
+/*________________TEXT BOXS_______________*/
+.wordBig{
+  text-align:justify;
+  margin:none;
+  margin-left:1em;
+  margin-right:1em;
+  font-size:calc(1em/2 + 1.8vw);
+  letter-spacing: calc(1em/30);
+  word-spacing: calc(1em*.10);
+}
+.wordMedium{
+  text-align:justify;
+  margin:none;
+  margin-left:1em;
+  margin-right:1em;
+  font-size:calc(1em/2 + 1vw);
+  letter-spacing: calc(1em/30);
+  word-spacing: calc(1em*.10);
+}
+.wordSmall{
+  text-align:justify;
+  margin:none;
+  margin-left:1em;
+  margin-right:1em;
+  font-size:calc(1em/2.5 + .5vw);
+  letter-spacing: calc(1em/30);
+  word-spacing: calc(1em*.10);
+}
+/*___________________FORM_________________*/
