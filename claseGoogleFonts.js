@@ -16,6 +16,7 @@ export class googleFonts{
       this.on();
     })
   }
+  //Agrega 10 nuevos estilos a la lista de fuentes, primero da un identificador, despues lo agrega con la funcion addElement.
   on() {
    for (let i = this.num; i < 10+this.num; i++) {
      let num$ = i;
@@ -52,22 +53,23 @@ export class googleFonts{
     obj.onclick=this.text_style;
   //_________________Agrega atributos a la etiqueta recien creada, llamandola desde su id
   }
+  //setLink::Crea el link para solicitar fuentes, se retorna el url para ser usado
   setLink(num) {
-  let apiUrl = [];
-  apiUrl.push('https://fonts.googleapis.com/css?family=');
-  apiUrl.push(this.f[num].family.replace(/ /g, '+'));
-
-  if ('regular'==this.f[num].variants[0]) {
-    apiUrl.push(':');
-    apiUrl.push('regular');
-  }
-  if ('latin'==this.f[num].subsets) {
-    apiUrl.push('&subset=');
-    apiUrl.push('latin');
-  }
-  let url = apiUrl.join('');
-    return url;
+    let apiUrl = [];
+    apiUrl.push('https://fonts.googleapis.com/css?family=');
+    apiUrl.push(this.f[num].family.replace(/ /g, '+'));
+    if ('regular'==this.f[num].variants[0]) {
+      apiUrl.push(':');
+      apiUrl.push('regular');
+    }
+    if ('latin'==this.f[num].subsets) {
+      apiUrl.push('&subset=');
+      apiUrl.push('latin');
+    }
+    let url = apiUrl.join('');
+      return url;
  }
+ //text_style::Es la funcion encargada de cambiar la fuente del parrafo. Tambien crea un Label temporal donde se mostrara el nombre de la fuente aplicada, tambien es la encargada de solicitar mas fuentes
   text_style(e){
     const po=new googleFonts;
     if(this.value<1005){
@@ -85,6 +87,7 @@ export class googleFonts{
       po.getFetchData();
     }
   }
+  //plusOption::Es la funcion encargada de eliminar el icono de solicitar mas fuentes y retornar la cantidad de elementos actuales en la lista
   plusOption(identify){
     let ul=document.getElementById("list_fetch");
     let plus=document.getElementById("plusOpt");
@@ -94,6 +97,8 @@ export class googleFonts{
   }
 }
 
+//SizeFont:
+/*Esta clase solicita numeros de diez en diez, los cuales son para aumentar el tamaño de la fuente*/
 export class SizeFont{
   constructor(num){
     this.identify='';
@@ -101,14 +106,16 @@ export class SizeFont{
     this.ul=document.getElementById('list_size');
     this.p=document.getElementById('Fonts');
   }
+  //setSize::Es la funcion encargada de agregar los digitos a la lista.
   setSize(){
     for(let i=this.num;i<10+this.num;i+=2){
       this.identify='foxySize'+i;
       this.addElement(i);
-    }
-    this.identify='plusOptSize';
-    this.addElement(100);
+      }
+      this.identify='plusOptSize';
+      this.addElement(100);
   }
+  //addElement::Funcion encargada de agregar los digitos a la lista
   addElement(num){
     let li = document.createElement('li');
     if(num==100){
@@ -123,6 +130,7 @@ export class SizeFont{
     li.onclick=this.text_size;
     this.ul.appendChild(li);
   }
+  //text-align::Funcion encargada de cambiar el tamaño del parrafo segun el digito seleccionado
   text_size(){
     const Sz=new SizeFont;
     this.innerHTML=parseInt(this.innerHTML);
@@ -141,6 +149,7 @@ export class SizeFont{
       Sz.setSize();
     }
   }
+  //plusOption::Funcion encargada de eliminar el elemento que solicita mas digitos y retornar los elementos actuales de la lista
   plusOption(identify){
     let ul=document.getElementById("list_size");
     let hijos=ul.children.length;
@@ -153,19 +162,23 @@ export class SizeFont{
   }
 }
 
+//SetColor
+/*Esta funcion se encarga de dar contexto al canvas y dar el color al usuario*/
 export class SetColor{
+  //constructor::Encargado de crear el context del canvas, agregar la imagen y el evento sobre el context.
   constructor(){
-    var cnv= document.getElementById("rueda");
-    var img=new Image();
+    let cnv= document.getElementById("rueda");
+    let img=new Image();
     img.src = 'https://img.icons8.com/color/96/000000/color-wheel-2.png';
-    var ctx= cnv.getContext("2d");
+    let ctx= cnv.getContext("2d");
     img.onload = function(){
       ctx.beginPath(); 
       ctx.drawImage(img, 0, 0,cnv.width,cnv.height);
       ctx.closePath(); 
     }
-    cnv.addEventListener('mousedown',this.getCoordena);
+    cnv.addEventListener('mouseup',this.getCoordena);
   }
+  //getCoordena::Funcion encargada de obtenee coordenadas del canvas con un click y traducir esaa coordenadas a un color
   getCoordena(e){
     let clickX;
     let clickY;
@@ -208,7 +221,7 @@ export class SetColor{
    let a= this.style;
     this.style=a.cssText+'background-color:#'+colorNew.firstColor+colorNew.secondColor+colorNew.thirdColor+';';
   }
-  
+  //getNumberColor::Funcion encargada de obtener un numero redondeado para posteriormente compararlo con el numero de la coordenada que se le este indicando
   getNumberColor(plano,scena,num){
     let i$;
     for(let i=1;i<30;i++){
@@ -226,36 +239,58 @@ export class SetColor{
   
 }
 
+//Menus
+/*Esta clase esta dedicada a agregar y mostrar los menus de interfaz segun donde el usuario de click*/
 export class Menus{
-  constructor(){
+  constructor(objetoTemporal){
     this.menuPrincipal=document.getElementById('menuPrincipal');
-    this.menuPrincipal.addEventListener('click',this.show)
-    document.body.addEventListener('dblclick',this.hidden);
-    this.activo=false;
+    this.objetoTemporal=objetoTemporal;
   }
+  //show::Muestra el menu lateral de opciones de la pagina.
   show(){
-    const M=new Menus;
-    if(M.activo==false){
-    M.activo=true;
-    let h=document.body.offsetHeight;
+   if(this.menuPrincipal.id==this.objetoTemporal){
+    let h=window.visualViewport.height;
+    let colocar;
+    if(h>720){
+    colocar=(Math.round(h/100))-(h/17.50);
+    }else{
+    colocar=95*-1;
+    }
     let menu=document.createElement('ul');
     menu.id='MenuRoot';
     menu.className='menuPrincipal';
-    menu.innerHTML=`
-    <li>Home</li>
-    <li>Pay</li>
-    <li>Contact</li>
-    <li>About us</li>
-    <li>Questions</li>
-    <li>Promo</li>
-    `;
-    document.body.append(menu);
+    document.body.children[0].append(menu);
     let menuP=menu.style.cssText;
-    menu.style=menuP+'transform:translate(-10%,'+((this.height-h)-(h*.118))+'px);';
-    }
+    menu.style=menuP+'transform:translate(-5%,'+colocar+'%);height:100vh;border:1px solid black;padding-top:50px;';
+    menu.innerHTML=`<li>Home</li><li>Pay</li><li>Contact</li><li>About us</li><li>Questions</li><li>Promo</li>`;
+   }
   }
+  //hidden::oculta todos los menus cuando lo clikean
   hidden(){
     let menuRoot=document.getElementById('MenuRoot');
-    document.body.removeChild(menuRoot);
+    if(Boolean(menuRoot)){
+    document.body.children[0].removeChild(menuRoot);
+    }
   }
 }
+
+//Press
+/*Clase encargada de ubicar el elemento clickeado*/
+export class Press extends Menus{
+  constructor(objetoTemporal){
+    super(objetoTemporal);
+  }
+  whoiam(e){ 
+    if(Boolean(e.target.id)){
+      const press=new Press(e.target.id);  
+      let objetoClickeado=document.getElementById(e.target.id);
+      if(e.target.id!='bodyA'){
+        press.show();
+      }
+      if(e.target.id!='menuPrincipal'){
+        press.hidden();
+        }
+      }
+    }
+  }
+  

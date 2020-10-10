@@ -18,7 +18,7 @@ ul{
   list-style: none;
 }
 .menuPrincipal{
- width:calc(100vw / 2.5);height:98vh;background:#ffffff88;display:grid;grid-template-rows:repeat(auto-fill, minmax(2em,1fr));font-size:calc(1em + 1vh);
+ width:calc(100vw / 2.5);background:#ffffffD8;display:grid;grid-template-rows:repeat(auto-fill, minmax(2em,1fr));font-size:calc(1em + 1vh);
 }
 .menuPrincipal > li:hover{
  background: #ffbb9988;
