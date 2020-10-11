@@ -249,28 +249,41 @@ export class Menus{
   //show::Muestra el menu lateral de opciones de la pagina.
   show(){
    if(this.menuPrincipal.id==this.objetoTemporal){
-    let h=window.visualViewport.height;
+    this.resize();
+    let h=document.body.offsetHeight;
     let colocar;
-    if(h>720){
-    colocar=(Math.round(h/100))-(h/17.50);
-    }else{
-    colocar=95*-1;
-    }
+    colocar=(this.menuPrincipal.height+h)*-1;
     let menu=document.createElement('ul');
     menu.id='MenuRoot';
     menu.className='menuPrincipal';
-    document.body.children[0].append(menu);
+    document.body.append(menu);
     let menuP=menu.style.cssText;
-    menu.style=menuP+'transform:translate(-5%,'+colocar+'%);height:100vh;border:1px solid black;padding-top:50px;';
+    menu.style=menuP+'transform:translate(-5%,'+colocar+'px);height:100vh;border:1px solid black;padding-top:100px;';
     menu.innerHTML=`<li>Home</li><li>Pay</li><li>Contact</li><li>About us</li><li>Questions</li><li>Promo</li>`;
+    this.resize();
    }
   }
   //hidden::oculta todos los menus cuando lo clikean
   hidden(){
     let menuRoot=document.getElementById('MenuRoot');
     if(Boolean(menuRoot)){
-    document.body.children[0].removeChild(menuRoot);
+    document.body.removeChild(menuRoot);
     }
+  }
+  
+  //resize::Hace que la ventana sufra una redimención en caso de que así lo necesite
+  resize(){
+    let b=document.body.clientHeight;
+    let c=document.body.children[0].offsetHeight;
+    let b$;
+    if(b>c){
+      b$=document.body.style='height:'+c+'px';
+    }else if(c>b){
+      b$=document.body.style='height:'+c+'px';
+    }else{
+      b$="this scale not is necesary, it's objects been sames"
+    }
+    console.log(b,c,b$);
   }
 }
 
