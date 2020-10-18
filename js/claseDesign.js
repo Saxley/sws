@@ -1,12 +1,3 @@
-/*class colors{
-  constructor(){
-    
-  }
-  colorObject(id){
-    let objeto=document.getElementById("id");
-    
-  }
-}*/
 class Create{
   constructor(styloL,stylo,typo,identify){
     this.stylo=stylo;
@@ -14,9 +5,6 @@ class Create{
     this.identify=identify;
     this.styloL=styloL;
   }
-  /*type  : tipo de objeto
-    style : nombre de la clase css 
-    id    : identificador */
   edit(){
     
   }
@@ -144,6 +132,10 @@ export class Press extends Create{
     objeto$.appendChild(objeto);
   }
 }
+
+
+
+
     //Buen prototipo para hacer listas, perfeccionar
    /* let body=document.body;
     let listOption=document.createElement('ul');

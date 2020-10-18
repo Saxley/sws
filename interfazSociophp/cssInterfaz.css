@@ -1,0 +1,48 @@
+#cP{
+  width: 80%;
+  height: 20%;
+  padding: none;
+  margin: none;
+  margin-left: 10%;
+  margin-right: 10%;
+  box-sizing: border-box;
+  border:1px solid black;
+  text-align:center;
+  background: #dddddd44;
+}
+#cP > button{
+  width: flex;
+  height: flex;
+  padding: none;
+  margin: none;
+  margin-left: 2%;
+  box-sizing: border-box;
+  border:1px solid black;
+  text-align:center;
+  background: none;
+}
+#cP > input{
+  width: 100%;
+  height: flex;
+  padding: none;
+  margin: none;
+  box-sizing: border-box;
+  border:1px solid black;
+  text-align:center;
+  background: #ffdddd33;
+}
+
+.leyenda {
+  box-sizing:border-box;
+  border:1px solid black;
+  border-radius: 20px;
+}
+.leyenda > span{
+  box-sizing:border-box;
+  border:1px solid black;
+  margin-left: 2%;
+  background: none;
+}
+.envio{
+  display:none;
+}
