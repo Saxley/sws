@@ -46,3 +46,19 @@
 .envio{
   display:none;
 }
+
+#cS { 
+  box-sizing: border-box; 
+  border:1px solid black;
+  width: 80%;
+  text-align: center; 
+  margin-right: 10%;
+  margin-top: 50%;
+  margin-left: 10%;
+}
+#cS > button { 
+  box-sizing: border-box; 
+  border:1px solid black;
+  width: 100%;
+  text-align: center;
+}

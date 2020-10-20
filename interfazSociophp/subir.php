@@ -4,8 +4,9 @@ $message=array();
 $archivo=$_FILES['archivito']['tmp_name'];
 $type=$_FILES['archivito']['type'];
 $name=$_FILES['archivito']['name'];
-$size=$_FILES['archivito']['size'];
-$precio;
+$size=$_FILES['archivito']['size']; 
+$img=$_POST['imagen'];
+$precio;  
 if($archivo!="none"){
    if($name[0]=="A"){
       $precio=9;
@@ -21,7 +22,17 @@ if($archivo!="none"){
       }else{
         $message['res']="No se pudo almacenar";
       }
-    }
+    }  
+
+  if($img!=null){  
+      $dirDestany=$_SERVER['DOCUMENT_ROOT'].'/upload/';
+      move_uploaded_file($archivo,$dirDestany.$name); 
+      $sql="UPDATE paginas SET imagenMuestra='$name' WHERE nombre='$img'";
+      $ejecucion=mysqli_query($conn,$sql); 
+      if($ejecucion){
+      $message['res']='Imagen almacenada'; 
+      }
+  }
 }else{
    $message['res']="No se puede almacenar";
 }

@@ -2,13 +2,26 @@
 require './tryConection.php';
 $message= array();
 $identify=$_POST['id'];
-$consulta="SELECT id,file FROM paginas WHERE id='$identify'";
+$img=$_POST['imagen']; 
+if($img!=null){
+$consulta="SELECT id,imagenMuestra FROM paginas WHERE id='$identify'";
+}else{
+$consulta="SELECT id,file FROM paginas WHERE id='$identify'"; 
+}
 $execute=mysqli_query($conn, $consulta);
-mysqli_set_charset($conn,"utf8");
+mysqli_set_charset($conn,"utf8"); 
 if($execute){
-  $row=mysqli_fetch_array($execute);
+  $row=mysqli_fetch_array($execute); 
+  if($img!=null){ 
+  if($row['imagenMuestra']!=null){
+  $info=$row['imagenMuestra']; 
+  }else{
+    $info='outService1.png';
+  }
+  }else{
   $info=$row['file'];
-  $message['res']=$info;
+  }
+  $message['res']=$info; 
 }else{
   $message['res']='error';
 }

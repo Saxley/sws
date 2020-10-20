@@ -173,7 +173,7 @@ class SizeFont{
 /*Esta funcion se encarga de dar contexto al canvas y dar el color al usuario*/
 class SetColor{
   //constructor::Encargado de crear el context del canvas, agregar la imagen y el evento sobre el context.
-  constructor(){
+  constructor(fondo){
     let cnv= document.getElementById("rueda");
     let img=new Image();
     img.src = 'https://img.icons8.com/color/96/000000/color-wheel-2.png';
@@ -182,8 +182,14 @@ class SetColor{
       ctx.beginPath(); 
       ctx.drawImage(img, 0, 0,cnv.width,cnv.height);
       ctx.closePath(); 
-    }
-    cnv.addEventListener('mouseup',this.getCoordena);
+    } 
+   if(fondo=='fondo'){
+    let f= document.createElement("label");
+    f.hidden=true;
+    f.id=fondo;
+    document.body.appendChild(f); 
+    } 
+    cnv.addEventListener('mouseup',this.getCoordena); 
   }
   //getCoordena::Funcion encargada de obtenee coordenadas del canvas con un click y traducir esaa coordenadas a un color
   getCoordena(e){
@@ -223,9 +229,15 @@ class SetColor{
      thirdColor:arrayColor[2].toString()+arrayColor[4].toString()
    }  
     let ghostInfo=document.getElementById("ghostInfo");
-    let p=document.getElementById(ghostInfo.innerHTML);
+    let f=document.getElementById("fondo");
+    let p=document.getElementById(ghostInfo.innerHTML); 
+    if(f==null){
     let b=p.style.cssText;
     p.style=b+'color:#'+colorNew.firstColor+colorNew.secondColor+colorNew.thirdColor+';';
+    }else{
+    let b=p.style.cssText;
+    p.style=b+'background:#'+colorNew.firstColor+colorNew.secondColor+colorNew.thirdColor+';';
+    }
    let a= this.style;
     this.style=a.cssText+'background-color:#'+colorNew.firstColor+colorNew.secondColor+colorNew.thirdColor+';';
   }
@@ -283,13 +295,32 @@ class Menus{
     this.addImage();
    }
    if(this.objetoTemporal.target.id=="option1"){ 
-    this.menuCreating();
+   let ulEdit = document.getElementById("edit");  
+   if(ulEdit!=null){
+   let divEdit = document.getElementById("sublist");
+   while(ulEdit.children.length>0){
+     ulEdit.children[0].remove();
    }
-   if(this.objetoTemporal.target.id=="option0"){ 
+   ulEdit.remove();
+   divEdit.remove(); 
+   } 
+    this.menuCreating();
+    this.printOpt(this.objetoTemporal);
+   }
+   if(this.objetoTemporal.target.id=="option0"){  
+   let ulCreating = document.getElementById("creating");  
+   if(ulCreating!=null){
+   let divEdit = document.getElementById("sublist");
+   while(ulCreating.children.length>0){
+     ulCreating.children[0].remove();
+   }
+   ulCreating.remove();
+   divEdit.remove(); 
+   } 
     this.menuEdit();
     this.printOpt(this.objetoTemporal);
    }   
-//__________________________________SUBMENUS
+//__________________________________SUBMENU0
    if(this.objetoTemporal.target.id=="FONT"){
     this.removeMenusEdit();
     this.menuFonts(); 
@@ -305,7 +336,10 @@ class Menus{
     this.printOpt(this.objetoTemporal);
    }  
    if(this.objetoTemporal.target.id=="COLORF"){
-    alert("background");
+    this.removeMenusEdit();
+    this.menuColor(); 
+    const cn=new SetColor('fondo');
+    this.printOpt(this.objetoTemporal);
    }  
    if(this.objetoTemporal.target.id=="COLOR"){
     this.removeMenusEdit();
@@ -313,7 +347,9 @@ class Menus{
     const cn=new SetColor();
     this.printOpt(this.objetoTemporal);
    }   
-//desmembrar::DETECTA CUANDO SE DA CLICK SOBRE UNA PLANTILLA Y LLAMA A LOS METODOS CORRWSPONDIENTES PARA PODER MOSTRARLA
+//_____________________________________SUBMENU1
+  
+//desmembrar::DETECTA CUANDO SE DA CLICK SOBRE UNA PLANTILLA Y LLAMA A LOS METODOS CORRESPONDIENTES PARA PODER MOSTRARLA
    if(desmembrar.length>1){
      let busqueda=this.objetoTemporal.target.id.split("imgCatalogo");
      let numberScript=busqueda[1];
@@ -361,8 +397,7 @@ class Menus{
     divCatalogo.appendChild(navCatalogo);
     navCatalogo.appendChild(listCatalogo);
     navCatalogo.appendChild(buttonnMore);
-    //seria nejor en navCatalogo
-    navCatalogo.addEventListener("dblclick",this.menuCreate);
+
     navCatalogo.addEventListener("click",this.menuHidden);
     //addsIL
     if(listCatalogo.children.length<4){
@@ -370,11 +405,11 @@ class Menus{
         let li=document.createElement("li");
         let img=document.createElement("img");
         li.id="liCatalogo"+i;  
-        img.id="imgCatalogo"+i;
-  
+        img.id="imgCatalogo"+i;  
         listCatalogo.append(li);
         li.append(img);
-      }
+        this.callImg(img.id,i); 
+      } 
     }
   }  
   
@@ -430,8 +465,11 @@ class Menus{
      case 'COLOR': 
         options=document.getElementById("rueda");
         break;
+     case 'COLORF': 
+        options=document.getElementById("rueda");
+        break;
       case 'option1':
-        alert('En mantenimiento');
+        options=document.getElementById("sublist");
         break;
     }
   vw=vw+"vw";
@@ -579,7 +617,32 @@ class Menus{
   
 //menuCreating::Crea objetos sobre el documento, ya sean parrafos, titulos, imagenes, listas, entre otras. 
   menuCreating(){
-    alert("creando");
+    let divBody=document.getElementById("bodyA");
+    let divCreating=document.createElement("DIV");
+    let ulCreating=document.createElement("UL");
+    let optParrafo=document.createElement("LI");
+    let optTitulo=document.createElement("LI");
+    let optFormulario=document.createElement("LI");
+    let optImagen=document.createElement("LI");
+    divCreating.className="grid_box_list";
+    divCreating.id="sublist";
+    ulCreating.className="subMenu";
+    ulCreating.id="creating";
+    optParrafo.id="PARRAFO";
+    optFormulario.id="FORMULARIO";
+    optImagen.id="IMAGEN";
+    optTitulo.id="TITULO";  
+//__________________________________AGREGAMOS
+    optParrafo.innerHTML="PARRAFO";
+    optFormulario.innerHTML="FORMULARIO";
+    optImagen.innerHTML="IMAGEN";
+    optTitulo.innerHTML="TITULO";
+    divBody.appendChild(divCreating);
+    divCreating.appendChild(ulCreating);
+    ulCreating.appendChild(optTitulo);
+    ulCreating.appendChild(optParrafo);
+    ulCreating.appendChild(optFormulario);
+    ulCreating.appendChild(optImagen);
   } 
   
 //removeMenusEdit:: Remueve los menus de editar o crear. 
@@ -592,14 +655,28 @@ class Menus{
    let liTemp = document.getElementById("optiontemp");
    
    let divEdit = document.getElementById("sublist");
-   let ulEdit = document.getElementById("edit"); 
+   let ulEdit = document.getElementById("edit");  
+   let ulCreating = document.getElementById("creating");  
+//_____________________________________SUBMENUS
+   let f=document.getElementById('fondo');
+    if(f!=null) f.remove(); 
+//__________________________________BACKGROUND
    if(ulEdit!=null){
    while(ulEdit.children.length>0){
      ulEdit.children[0].remove();
    }
    ulEdit.remove();
    divEdit.remove(); 
+   } 
+//__________________________________SUBMENU0
+   if(ulCreating!=null){
+   while(ulCreating.children.length>0){
+     ulCreating.children[0].remove();
    }
+   ulCreating.remove();
+   divEdit.remove(); 
+   } 
+//_____________________________________SUBMENU1
    linkEdit.remove();
    optEdit.remove();
    optCreate.remove();
@@ -611,7 +688,8 @@ class Menus{
   addImage(){
      let listCatalogo=document.getElementById("ulCatalogo");
      let countChilds=listCatalogo.children.length;
-     console.log(countChilds);
+     console.log(countChilds); 
+     if(listCatalogo.children[countChilds-1].children[0].src!='http://localhost:8080/upload/outService1.png'){
     for(let i=countChilds;i<countChilds+4;i++){
         let li=document.createElement("li");
         let img=document.createElement("img");
@@ -619,8 +697,10 @@ class Menus{
         img.id="imgCatalogo"+i;
         
         listCatalogo.append(li);
-        li.append(img);
-      }
+        li.append(img); 
+        this.callImg(img.id,i); 
+      } 
+     }
   }
   
 //callScript::Llama al script de la imagen que fue clickeada para que el usuario pueda interactuar.
@@ -676,9 +756,33 @@ class Menus{
 //REDIRECCIONAMOS A LA VENTANA DE COMPRAR.     
       buttonnBuy.addEventListener("click",()=>{
         
-      });
+      }); 
+//FUNCION DOBLE DobleClick 
+     this.navCatalogo.addEventListener("dblclick",this.menuCreate);
       })
     })
+  }  
+  
+//callImg::Llama a la imagen del SCRIPT
+  callImg(imgid,number){ 
+   let img=document.getElementById(imgid);
+   let l='./upload/';
+    const url="http://localhost:8080/interfazSociophp/getScript.php";
+    let datos=new FormData();
+    datos.append("id",number); 
+    datos.append('imagen','imagen');
+   fetch(url,{
+      method:'post',
+      body:datos
+    })
+    .then(response =>{
+      data=response.json()
+      .then(data=>{  
+        if(data.res!='error'){ 
+          img.src=l+data.res;  
+        } 
+      })
+    });  
   }
 }
 
