@@ -257,6 +257,82 @@ class SetColor{
    }
   }
   
+} 
+
+//SetCreate
+/*Esta clase se encarga de crear objetos en el html*/ 
+class SetCreate{
+  constructor(objeto){ 
+    switch(objeto){
+      case 'TITULO':
+        this.titulos();
+        break;
+      case 'PARRAFO': 
+        this.parrafos();
+        break;
+      case 'FORMULARIO':
+        this.formularios();
+        break;
+      case 'IMAGEN':
+        this.imagenes();
+        break;
+    } 
+  }
+  titulos(){
+    alert('creando titulo');
+  }
+  parrafos(){
+    alert('creando parrafo');
+  }
+  formularios(){
+    alert('creando formulario');
+  } 
+  imagenes(){
+    alert('creando imagen');
+  } 
+} 
+
+//SetText
+/*Esta funcion da la opcion de cambiar el texto de un parrafo*/ 
+class SetText{ 
+  constructor(action){
+    let ghostInfo=document.getElementById('ghostInfo');
+    this.tmpTxt=document.getElementById(ghostInfo.innerHTML); 
+    switch(action){
+    case 'TEXT':
+      this.writes(); 
+      break;
+    case 'CENTER':
+      this.centrar(); 
+      break;
+    case 'LEFT':
+      this.leftear(); 
+      break;
+    case 'RIGHT':
+      this.rightear(); 
+      break;
+    }
+  }
+  writes(){ 
+   if(this.tmpTxt.innerHTML!='' && this.tmpTxt.tagName=='P'){
+    let txt=prompt('Writes'); 
+    if(txt!=null && txt!=''){
+    this.tmpTxt.innerHTML=txt; 
+    } 
+   }
+  } 
+  centrar(){
+    let stylo=this.tmpTxt.style.cssText;
+    this.tmpTxt.style=stylo+'text-align:center';
+  }
+  leftear(){
+    let stylo=this.tmpTxt.style.cssText;
+    this.tmpTxt.style=stylo+'text-align:left';
+  }
+  rightear(){
+    let stylo=this.tmpTxt.style.cssText;
+    this.tmpTxt.style=stylo+'text-align:right';
+  }
 }
 
 //_____________________________________________
@@ -346,7 +422,25 @@ class Menus{
     this.menuColor(); 
     const cn=new SetColor();
     this.printOpt(this.objetoTemporal);
-   }   
+   }    
+//____________________________________SUBMENU1
+ 
+ if(this.objetoTemporal.target.id=="PARRAFO"){
+     let parrafo=new SetCreate(this.objetoTemporal.target.innerHTML);
+   }
+   if(this.objetoTemporal.target.id=="IMAGEN"){
+     let imagen=new SetCreate(this.objetoTemporal.target.innerHTML);
+   }
+   if(this.objetoTemporal.target.id=="TITULO"){
+     let titulo=new SetCreate(this.objetoTemporal.target.innerHTML);
+   }
+   if(this.objetoTemporal.target.id=="FORMULARIO"){
+     let formulario=new SetCreate(this.objetoTemporal.target.innerHTML);
+   }
+   if(this.objetoTemporal.target.id=="CHANGE"){
+      this.removeMenusEdit();
+      const changeText=new SetText(this.objetoTemporal.target.innerHTML);
+   }
 //_____________________________________SUBMENU1
   
 //desmembrar::DETECTA CUANDO SE DA CLICK SOBRE UNA PLANTILLA Y LLAMA A LOS METODOS CORRESPONDIENTES PARA PODER MOSTRARLA
@@ -436,7 +530,8 @@ class Menus{
         divBody.children[i].remove();
       } 
     }
-  }
+  } 
+  
 //printOpt::Se encarga de imprimir en pantalla el submenu que se le indique
   printOpt(e){
     let options;
@@ -594,6 +689,9 @@ class Menus{
     let optFont=document.createElement("LI");
     let optColor=document.createElement("LI");
     let optColorFont=document.createElement("LI");
+    let optCenter=document.createElement("LI");
+    let optLeft=document.createElement("LI");
+    let optRight=document.createElement("LI");
     divEdit.className="grid_box_list";
     divEdit.id="sublist";
     ulEdit.className="subMenu";
@@ -602,17 +700,26 @@ class Menus{
     optColor.id="COLOR";
     optColorFont.id="COLORF";
     optFont.id="FONT";  
+    optCenter.id="CHANGE";  
+    optLeft.id="CHANGE";  
+    optRight.id="CHANGE";  
 //__________________________________AGREGAMOS
     optSize.innerHTML="SIZE";
     optColor.innerHTML="COLOR";
     optColorFont.innerHTML="BACKGROUND";
     optFont.innerHTML="FONT";
+    optCenter.innerHTML="CENTER";
+    optLeft.innerHTML="LEFT";
+    optRight.innerHTML="RIGHT";
     divBody.appendChild(divEdit);
     divEdit.appendChild(ulEdit);
     ulEdit.appendChild(optFont);
     ulEdit.appendChild(optSize);
     ulEdit.appendChild(optColorFont);
     ulEdit.appendChild(optColor);
+    ulEdit.appendChild(optCenter);
+    ulEdit.appendChild(optLeft);
+    ulEdit.appendChild(optRight);
   }
   
 //menuCreating::Crea objetos sobre el documento, ya sean parrafos, titulos, imagenes, listas, entre otras. 
@@ -623,6 +730,7 @@ class Menus{
     let optParrafo=document.createElement("LI");
     let optTitulo=document.createElement("LI");
     let optFormulario=document.createElement("LI");
+    let optChange=document.createElement("LI");
     let optImagen=document.createElement("LI");
     divCreating.className="grid_box_list";
     divCreating.id="sublist";
@@ -632,17 +740,20 @@ class Menus{
     optFormulario.id="FORMULARIO";
     optImagen.id="IMAGEN";
     optTitulo.id="TITULO";  
+    optChange.id="CHANGE";  
 //__________________________________AGREGAMOS
     optParrafo.innerHTML="PARRAFO";
     optFormulario.innerHTML="FORMULARIO";
     optImagen.innerHTML="IMAGEN";
     optTitulo.innerHTML="TITULO";
+    optChange.innerHTML="TEXT";
     divBody.appendChild(divCreating);
     divCreating.appendChild(ulCreating);
     ulCreating.appendChild(optTitulo);
     ulCreating.appendChild(optParrafo);
     ulCreating.appendChild(optFormulario);
     ulCreating.appendChild(optImagen);
+    ulCreating.appendChild(optChange);
   } 
   
 //removeMenusEdit:: Remueve los menus de editar o crear. 
@@ -795,7 +906,7 @@ export class Press extends Menus{
   whoiam(e){    
     if(Boolean(e.target.id)){
       const press=new Press(e);  
-      let objetoClickeado=document.getElementById(e.target.id);
+      let objetoClickeado=document.getElementById(e.target.id); 
       //CONTENEDOR
       if(e.target.id!='bodyA'){
         press.show(); 
@@ -806,139 +917,3 @@ export class Press extends Menus{
       }
     }
   }
-  
-  //______ACOMODAR ESTAS CLASES
-/*class Create{
-  constructor(styloL,stylo,typo,identify){
-    this.stylo=stylo;
-    this.tempTypo=typo;
-    this.identify=identify;
-    this.styloL=styloL;
-  }
-  edit(){
-    
-  }
-  create(){
-    let newElement=document.createElement(type);
-    newElement.className=style;
-    let existElement=document.body.getElementById(this.typo);
-  }
-//crear dentro de un objeto
-  mekeInto(type,identify){
-   let newId="_FoxyElement";
-   let object=document.getElementById(identify);
-   if(Boolean(object.children.length)){
-   for (let i = 0; i < object.children.length; i++) {
-    let getid = object.children[i];
-    while (getid.id == object.id) {
-      newId= type+newId+i.toString();
-    }
-    return newId;
-   }
-  }else{
-    newId=type+newId;
-    return newId;
-  }
-}
-
-//Estilos default
-  setAtributes(style,id){
-    let tag=document.getElementById(id);
-    tag.className=style;
-  }
-  
-//Modificaciones x el usuario
-  setAtributesText(fonts,sizes,align,id){
-    let tag=document.getElementById(id);
-    tag.style='font-family:'+fonts;
-    tag.style='font-size:'+sizes+'%';
-    tag.style='text-align:'+align;
-  }
-  textDecoration(type,color,id){
-   let tag=document.getElementById(id);
-   tag.style='color:'+color;
-  }
-  setAtributeForm(width,height,radius,id){
-   let tag=document.getElementById(id);
-   tag.style='width:'+width;
-   tag.style='height:'+height;
-   tag.style='border-radius:'+radius+'%';
-  }
-  border(weight,visual,where,color,id){
-    let tag=document.getElementById(id);
-    if(visual){
-     for(let arist of where){
-      tag.style='border-'+arist+':'+weight+'% solid '+color;
-     }
-    }else{
-     tag.style='border:none';
-    }
-  }
-//TEXT_BOX
-  textPlace(wodrs,id){
-   let tag=document.getElementById(id);
-   tag.placeholder=words;
-  }
-  backColor(color,id){
-   let tag=document.getElementById(id);
-   tag.style='background-color:'+color;
-  }
-}
-
-export class M extends Create{
-  constructor(styloL,stylo,typo,identify){
-    super(styloL,stylo,typo,identify);
-  }
-  
-  showList(e){
-    let options;
-    let menuOcult;
-    let d=document.body;
-    let c={
-       pY:d.clientHeight,
-       pX:d.clientWidth,
-       px:e.clientX,
-       py:e.clientY
-    };
-    
-    let vh=c.pY*.01-c.py*.1;
-    let vw=c.pX*.01+c.px*.1;
-    if(vw>70){
-      vw=70;
-    }
-    switch(e.target.id){
-      case 'option0':
-        options=document.getElementById("sublist");
-        break;
-      case 'option1':
-        alert('En mantenimiento');
-        break;
-      default:
-        options=document.getElementById("list");
-        let nameId=e.target.id;
-        let litemp=document.createElement('li');
-        litemp.id='optiontemp';
-        litemp.innerHTML=nameId;
-        litemp.style="display:none";
-        options.after(litemp);
-    }
-    vw=vw+"vw";
-    vh=vh+"vh";
-    options.style="display:flex;transform:translate("+vw+","+vh+");";
-  }
-  
-  obtener(e){
-    let opt=document.getElementById('optiontemp');
-    let eE=document.getElementById(opt.innerHTML);
-    const EA=new Press(this.className,eE.className,eE.nodeName,opt.innerHTML);
-    let E=e;
-    EA.showList(E);
-    this.value==1 ? EA.edit() : EA.create();
-  }
-  
-  showObject(identify$,identify){
-    let objeto$=document.getElementById(identify$);
-    let objeto=document.getElementById(identify);
-    objeto$.appendChild(objeto);
-  }
-}*/
