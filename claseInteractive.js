@@ -1,4 +1,3 @@
-//REVISAR
 //googleFonts;
 /*Esta clase solicita de inteenet las fuentes, su uso es traer fuentes rapido y de tod tipo*/
 class googleFonts{
@@ -273,7 +272,8 @@ class SetColor{
 
 //SetCreate
 /*Esta clase se encarga de crear objetos en el html*/ 
-class SetCreate{
+class SetCreate{ 
+//constructor::En el constructor se analiza el innerHTML de la etiqueta que fue presionada, dependiendo de cual fue, el objeto tendra caracterizticas diferentes.
   constructor(objeto){ 
     this.objeto; 
     let ghostInfo=document.getElementById('ghostInfo');
@@ -382,6 +382,7 @@ class SetCreate{
     this.create();
   } 
   
+//create::Aquí se crean los objetos
   create(){ 
     let objeto;
     objeto=document.createElement(this.objeto.object);
@@ -407,7 +408,8 @@ class SetCreate{
     this.where.appendChild(objeto); 
    }
   } 
-  
+
+//searchIds::Busca el id principal y los que le siguen, en caso de que se repita aumenta un digito a el id.
   searchIds(){ 
     let c=0; 
     let newid; 
@@ -423,6 +425,7 @@ class SetCreate{
 //SetText
 /*Esta funcion da la opcion de cambiar el texto de un parrafo*/ 
 class SetText{ 
+//Recibe como parametro la accion a realizar y busca con un switch dhicha accion
   constructor(action){
     let ghostInfo=document.getElementById('ghostInfo');
     this.tmpTxt=document.getElementById(ghostInfo.innerHTML); 
@@ -442,6 +445,7 @@ class SetText{
     }
   } 
   
+//writes::Da la opción de re escribir en caso de que no haya nada ñ, no se podra escribir.
   writes(){ 
    if(this.tmpTxt.innerHTML!=''){
     if(this.tmpTxt.tagName=='P' || this.tmpTxt.tagName=='H1' || this.tmpTxt.tagName=='LI' || this.tmpTxt.tagName=='BUTTON' || this.tmpTxt.tagName=='LABEL' || this.tmpTxt.tagName=='LEGEND'){
@@ -452,17 +456,18 @@ class SetText{
     }
    }
   } 
-  
+
+//centrar::Centra el texto
   centrar(){
     let stylo=this.tmpTxt.style.cssText;
     this.tmpTxt.style=stylo+'text-align:center';
   } 
-  
+//leftear::Manda a la izquierda el texto
   leftear(){
     let stylo=this.tmpTxt.style.cssText;
     this.tmpTxt.style=stylo+'text-align:left';
   } 
-  
+//rightear::Manda a la derecha el texto
   rightear(){
     let stylo=this.tmpTxt.style.cssText;
     this.tmpTxt.style=stylo+'text-align:right';
