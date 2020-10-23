@@ -16,7 +16,7 @@ if($execute){
   if($row['imagenMuestra']!=null){
   $info=$row['imagenMuestra']; 
   }else{
-    $info='outService1.png';
+    $info='outService.png';
   }
   }else{
   $info=$row['file'];
