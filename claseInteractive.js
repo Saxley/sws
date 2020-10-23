@@ -1,3 +1,4 @@
+//REVISAR
 //googleFonts;
 /*Esta clase solicita de inteenet las fuentes, su uso es traer fuentes rapido y de tod tipo*/
 class googleFonts{
