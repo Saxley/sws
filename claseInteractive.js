@@ -45,7 +45,7 @@ class googleFonts{
     link.setAttribute('href', l);
     body.appendChild(link);
     }else{
-      vocals=`<img src="https://img.icons8.com/metro/26/000000/plus.png" style='width:10vw;height:1em/2;'/>`;
+      vocals=`<img src="http://localhost:8080/upload/iconoPlus.ico" style='width:10vw;height:1em/2;'/>`;
     }
   //_________________Crea y agrega el link al head
     let element = document.createElement('li');
@@ -134,7 +134,7 @@ class SizeFont{
   addElement(num){
     let li = document.createElement('li');
     if(num==100){
-      li.innerHTML=`<img src="https://img.icons8.com/metro/26/000000/plus.png" style='width:5vw;height:1em/4;'/>`;
+      li.innerHTML=`<img src="http://localhost:8080/upload/iconoPlus.ico" style='width:7vw;height:1em;'/>`;
       li.value=num;
     }else{
       li.innerHTML=num;
