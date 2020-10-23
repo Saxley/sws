@@ -999,7 +999,7 @@ class Menus{
      let listCatalogo=document.getElementById("ulCatalogo");
      let countChilds=listCatalogo.children.length;
      console.log(countChilds); 
-     if(listCatalogo.children[countChilds-1].children[0].src!='http://localhost:8080/upload/outService1.png'){
+     if(listCatalogo.children[countChilds-1].children[0].src!='http://localhost:8080/upload/outService.png'){
     for(let i=countChilds;i<countChilds+4;i++){
         let li=document.createElement("li");
         let img=document.createElement("img");
