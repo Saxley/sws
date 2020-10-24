@@ -104,7 +104,7 @@ export class AddNewScript{
     let img=document.getElementById(archive);
     let txt=document.getElementById(where);
     
-    const url = "http://localhost:8080/interfazSociophp/subir.php";
+    const url = "https://sedated-davit.000webhostapp.com/interfazSociophp/subir.php";
     let datos=new FormData();
    datos.append("archivito", img.files[0]); 
     if(txt!=null){  

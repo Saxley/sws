@@ -1,3 +1,4 @@
+/*SUBMENUS*/
 canvas{
 height:calc(1vh*15);width:calc(1vw*27);border:1px solid black;border-radius:calc(1vw*(3.1416*2)*4);background: #990000;
 }
@@ -18,7 +19,8 @@ nav > ul{
 }
 ul{
   list-style: none;
-}
+} 
+/*MENU PRINCIPAL*/
 .menuPrincipal{
  width:calc(100vw / 1.5);background:#ff9911DE;display:grid;grid-template-rows:repeat(auto-fill, minmax(2em,1fr));font-size:calc(1em + 1vh);
 }
@@ -27,7 +29,7 @@ ul{
  border-radius: 10px;
  border:none;
 }
-
+/*ENCABEZDO*/
 .encabezado{
 display:grid;grid-template-columns:repeat(3,1fr);height:7vh;background:#ff9911;
 }
@@ -68,7 +70,6 @@ height:7vh;width:10vh;
   text-align: left;
   padding:none;
 }
-
 .catalogo_grid > nav > ul > li > img{
   padding: none;
   margin:none;
@@ -77,13 +78,11 @@ height:7vh;width:10vh;
   height:80%;
   border-radius: 20px;
 }
-
 .catalogo_grid > nav > ul > li > img:hover {
   width:80%; 
   height:70%;
   padding:5%;
 }
-
 .catalogo_grid > nav > button {
   grid-column: 1 / span 2;
   background: #EEEEEE88;
@@ -91,7 +90,6 @@ height:7vh;width:10vh;
   font-size: 1.2em; 
   border:none;
 }
-
 .catalogo_grid > footer{
   width:100%;
   font-size:calc(1em + 1vw);

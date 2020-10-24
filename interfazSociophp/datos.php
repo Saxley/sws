@@ -1,9 +1,9 @@
 <?php
 $server='localhost';
 //LEER datos para la pagina en el host
-//$basedatos='id14624857_php_misusuarios';
-//$usuario='id14624857_foxygamer';
-//$contraseña='F0xy?12340987';
+//$basedatos='id14624857_scripts';
+//$usuario='id14624857_foxyscripts';
+//$contraseña='F0xy$1234###';
 
 //LEER Datos prueba en mi server local
 $basedatos='shopwebstore';

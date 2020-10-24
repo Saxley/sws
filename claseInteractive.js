@@ -1019,6 +1019,7 @@ class Menus{
     const url="http://localhost:8080/interfazSociophp/getScript.php";
     let datos=new FormData();
     datos.append("id",this.numberScript);
+    datos.append("imagen",'null');
     fetch(url,{
       method:'post',
       body:datos
