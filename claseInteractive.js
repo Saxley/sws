@@ -1065,8 +1065,65 @@ class Menus{
         window.location.reload();
       });
 //REDIRECCIONAMOS A LA VENTANA DE COMPRAR.     
-      buttonnBuy.addEventListener("click",()=>{
-        
+      buttonnBuy.addEventListener("click",()=>{ 
+        if(document.getElementById('email')==null){
+        let pedido=document.createElement('P'); 
+        pedido.innerHTML=this.navCatalogo.innerHTML;
+        pedido.hidden=true;
+        pedido.id='pedido';
+        let ejecutar=new Pagina(this.navCatalogo.id);
+        ejecutar.drop(); 
+        let email=document.createElement('INPUT');
+        let legend=document.createElement('P');
+        let comment=document.createElement('TEXTAREA');
+        let legend0=document.createElement('P');
+        let pago=document.createElement('SELECT');
+        let pagoL=document.createElement('Label');
+        legend.innerHTML='Danos tu correo electronico para ponernos en contacto contigo<br>';
+        legend.id='email';
+        legend.className='email';
+        legend0.innerHTML='Dejanos algunos detalles sobre como quieres tu pagina, te recomendamos que nos dejes un listado. Estaremos en contacto contigo y tomaremos esta lista como referencia inicial.<br>';
+        legend0.id='comment';
+        legend0.className='email';
+        email.className='email';
+        email.id='intoEmail';
+        email.type='text';
+        email.placeholder='Correo Electronico';
+        comment.className='email';
+        comment.id='intoComment';
+        comment.placeholder='Detalles sobre tu web'; 
+        pagoL.innerHTML="Metodo de pago <br>";
+        pagoL.className='metodo';
+        pago.className='metodo';
+        pago.id='metodo';
+        pago.innerHTML=`
+    <option value="PayPal">Paypal</option>
+    <option value="MercadoPago">Mercado Pago</option>
+    <option value="Deposito">Deposito Bancario</option>`;
+        this.navCatalogo.append(pedido);
+        this.navCatalogo.append(legend);
+        legend.append(email);
+        this.navCatalogo.append(legend0);
+        legend0.append(comment); 
+        this.navCatalogo.append(pagoL);
+        this.navCatalogo.append(pago);
+        }else{
+        const url="http://localhost:8080/interfazSociophp/pedidos.php";
+        let datos=new FormData(); 
+        datos.append("editado",document.getElementById('pedido').innerHTML);
+        datos.append("email",document.getElementById('intoEmail').value);
+        datos.append("comment",document.getElementById('intoComment').value);
+        fetch(url,{
+         method:'post',
+         body:datos
+         })
+       .then(response =>{
+         data=response.json()
+         .then(data=>{  
+            alert(data.res);
+         })
+        }) 
+        }
       }); 
 //FUNCION DOBLE DobleClick 
      this.navCatalogo.addEventListener("dblclick",this.menuCreate);
