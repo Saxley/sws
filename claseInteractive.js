@@ -1098,8 +1098,7 @@ class Menus{
         pago.id='metodo';
         pago.innerHTML=`
     <option value="PayPal">Paypal</option>
-    <option value="MercadoPago">Mercado Pago</option>
-    <option value="Deposito">Deposito Bancario</option>`;
+    <option value="MercadoPago">Mercado Pago</option>`;
         this.navCatalogo.append(pedido);
         this.navCatalogo.append(legend);
         legend.append(email);
@@ -1107,12 +1106,14 @@ class Menus{
         legend0.append(comment); 
         this.navCatalogo.append(pagoL);
         this.navCatalogo.append(pago);
-        }else{
+        }else{ 
+        if(document.getElementById('intoEmail').value!='' && document.getElementById('intoComment').value!=''){
         const url="http://localhost:8080/interfazSociophp/pedidos.php";
         let datos=new FormData(); 
-        datos.append("editado",document.getElementById('pedido').innerHTML);
+        datos.append("editado",document.getElementById('pedido').innerHTML); 
         datos.append("email",document.getElementById('intoEmail').value);
         datos.append("comment",document.getElementById('intoComment').value);
+        datos.append("metodo",document.getElementById('metodo').value);
         fetch(url,{
          method:'post',
          body:datos
@@ -1120,9 +1121,19 @@ class Menus{
        .then(response =>{
          data=response.json()
          .then(data=>{  
-            alert(data.res);
+           while(this.navCatalogo.children.length>0){
+              this.navCatalogo.children[0].remove();
+            } 
+            if(data.pay=='PayPal'){
+             document.getElementById('smart-button-container').style='display:contents;'; 
+            }else if(data.pay=='MercadoPago'){
+              alert('en construction');
+            }
          })
         }) 
+        }else{
+          alert('Porfavor llene todos los campos');
+        }
         }
       }); 
 //FUNCION DOBLE DobleClick 

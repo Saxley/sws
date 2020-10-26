@@ -180,4 +180,7 @@ background-color: #444444;
 }
 #intoComment:hover{ 
   height: 10em;
+} 
+.ocul{
+  display: none;
 }
