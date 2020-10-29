@@ -1140,7 +1140,7 @@ class Menus{
          method:'post',
          body:datos
          })
-       .then(response =>{
+       .then(response =>{ 
          data=response.json()
          .then(data=>{  
            while(this.navCatalogo.children.length>0){
