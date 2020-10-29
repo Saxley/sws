@@ -9,7 +9,7 @@ $img=$_POST['imagen'];
 $precio;  
 if($archivo!="none"){
    if($name[0]=="A"){
-      $precio=9;
+      $precio=10;
       $file=fopen($archivo, "r");
       $fileFinish=fread($file, $size);
       $fileFinish=addslashes($fileFinish);

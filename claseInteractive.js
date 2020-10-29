@@ -491,8 +491,11 @@ class Menus{
 //show::Muestra el menu lateral de opciones de la pagina.
   show(){  
    let desmembrar=this.objetoTemporal.target.id.split("img");
-//MENU LATERAL ________________________________
-   if(this.menuPrincipal.id==this.objetoTemporal.target.id){
+//MENU LATERAL _______________________________
+   if(this.menuPrincipal.id==this.objetoTemporal.target.id){ 
+    if(document.getElementById('smart-button-container')!=null){
+    document.getElementById('smart-button-container').style='display:none'; 
+    }
     this.resize();
     let h=document.body.offsetHeight;
     let colocar;
@@ -503,9 +506,11 @@ class Menus{
     document.body.append(menu);
     let menuP=menu.style.cssText;
     menu.style=menuP+'transform:translate(-5%,'+colocar+'px);height:100vh;border:1px solid black;padding-top:100px;';
-    menu.innerHTML=`<li>Home</li><li>Pay</li><li>Contact</li><li>About us</li><li>Questions</li><li>Promo</li>`;
-    this.resize();
-   }
+    menu.innerHTML=`<li id='Home'>Home</li><li id='Pay'>Pay</li><li id='Contact'>Contact</li><li id='AboutUs'>About us</li><li id='Questions'>Questions</li><li id='Promo'>Promo</li>`;
+    this.resize(); 
+    const go=new Vistas();
+   }  
+//MENU CATALOGO ______________________________
    if(this.objetoTemporal.target.id=="buttonnMore"){
     this.addImage();
    }
@@ -612,7 +617,7 @@ class Menus{
       this.removeMenusEdit();
       const changeText=new SetText(this.objetoTemporal.target.innerHTML);
    }
-//_____________________________________SUBMENU1
+//____________________________________SUBMENU1
   
 //desmembrar::DETECTA CUANDO SE DA CLICK SOBRE UNA PLANTILLA Y LLAMA A LOS METODOS CORRESPONDIENTES PARA PODER MOSTRARLA
    if(desmembrar.length>1){
@@ -628,6 +633,11 @@ class Menus{
     let menuRoot=document.getElementById('MenuRoot');
     if(Boolean(menuRoot)){
     document.body.removeChild(menuRoot);
+    } 
+    if(document.getElementById('buttonnBuy')==null && document.getElementById('buttonnMore')==null){ 
+      if(document.getElementById('smart-button-container')!=null){
+      document.getElementById('smart-button-container').style='display:contents';
+     } 
     }
   }
   
@@ -648,13 +658,14 @@ class Menus{
   
 //menuCatalogo::Muestra las opciones de diseño pre diseñadas.
   menuCatalogo(){  
+    let navCatalogo=document.createElement('nav');
+    navCatalogo.id="navCatalogo";
+    if(document.getElementById('catalogo_grid')!=null){
     let divCatalogo=document.getElementById('catalogo_grid');
     let listCatalogo=document.createElement('ul'); 
-    let navCatalogo=document.createElement('nav');
     let buttonnMore=document.createElement('button');
     //id
     listCatalogo.id="ulCatalogo";
-    navCatalogo.id="navCatalogo";
     buttonnMore.id="buttonnMore";
     //InnersHTML
     buttonnMore.innerHTML="See more options";
@@ -675,6 +686,9 @@ class Menus{
         li.append(img);
         this.callImg(img.id,i); 
       } 
+     } 
+    }else{
+      document.getElementById('bodyA').appendChild(navCatalogo); 
     }
   }  
   
@@ -777,7 +791,8 @@ class Menus{
   } 
   
 //menuCreate::Crea una lista para editar el elemento que este en nav
-  menuCreate(e){   
+  menuCreate(e){    
+    if(document.getElementById('pedido')==null){
 //exist::Nos va ayudar para saber si ya existe en bodyA 
     let exist=false;
     let divBody=document.getElementById("bodyA"); 
@@ -849,6 +864,7 @@ class Menus{
     vw=vw+"vw";
     vh=vh+"px";
     options.style="display:flex;transform:translate("+vw+","+vh+");";   
+    }
   }
   
 //menuEdit::Crea un menu que da la opcion de cambiar el formato del texto,fondo,tamaño del objeto.
@@ -1063,9 +1079,14 @@ class Menus{
         footer.remove(); 
         this.menuCatalogo();
         window.location.reload();
-      });
-//REDIRECCIONAMOS A LA VENTANA DE COMPRAR.     
-      buttonnBuy.addEventListener("click",()=>{ 
+      }); 
+      
+//REDIRECCIONAMOS A LA VENTANA DE COMPRAR.  
+      buttonnBuy.addEventListener("click",()=>{  
+//Verificamos que cambiar tamaño y color de navCatalogo esten removidos
+        if(document.getElementById('plusOptSize')!=null)document.getElementById('plusOptSize').parentNode.remove();
+        if(document.getElementById('rueda')!=null)document.getElementById('rueda').remove(); 
+//verificamos que email no exista para poder crearlo
         if(document.getElementById('email')==null){
         let pedido=document.createElement('P'); 
         pedido.innerHTML=this.navCatalogo.innerHTML;
@@ -1087,8 +1108,8 @@ class Menus{
         legend0.className='email';
         email.className='email';
         email.id='intoEmail';
-        email.type='text';
-        email.placeholder='Correo Electronico';
+        email.type='email';
+        email.placeholder='example@example.com';
         comment.className='email';
         comment.id='intoComment';
         comment.placeholder='Detalles sobre tu web'; 
@@ -1105,9 +1126,10 @@ class Menus{
         this.navCatalogo.append(legend0);
         legend0.append(comment); 
         this.navCatalogo.append(pagoL);
-        this.navCatalogo.append(pago);
+        this.navCatalogo.append(pago); 
+        this.navCatalogo.style='font-size:1em'; 
         }else{ 
-        if(document.getElementById('intoEmail').value!='' && document.getElementById('intoComment').value!=''){
+        if(document.getElementById('intoEmail').value!='' && document.getElementById('intoComment').value!=''){ 
         const url="http://localhost:8080/interfazSociophp/pedidos.php";
         let datos=new FormData(); 
         datos.append("editado",document.getElementById('pedido').innerHTML); 
@@ -1124,11 +1146,17 @@ class Menus{
            while(this.navCatalogo.children.length>0){
               this.navCatalogo.children[0].remove();
             } 
+            this.navCatalogo.style='height:50vh';
+            document.getElementById('buttonnBuy').remove();
+            document.getElementById('buttonnBack').remove();
             if(data.pay=='PayPal'){
              document.getElementById('smart-button-container').style='display:contents;'; 
             }else if(data.pay=='MercadoPago'){
-              alert('en construction');
-            }
+             document.getElementById('smart-button-container').style='display:contents;'; 
+              alert('Actualmente estamos teniendo inconvenientes con Mercado Pago');
+            } 
+            alert(data.res);
+            document.getElementById('pedido').remove();
          })
         }) 
         }else{
@@ -1136,8 +1164,10 @@ class Menus{
         }
         }
       }); 
-//FUNCION DOBLE DobleClick 
-     this.navCatalogo.addEventListener("dblclick",this.menuCreate);
+      
+//FUNCION DOBLE DobleClick  
+     this.navCatalogo.addEventListener("dblclick",this.menuCreate); 
+     
       })
     })
   }  
@@ -1165,6 +1195,41 @@ class Menus{
   }
 }
 
+//Vistas
+/*Son los links del menu lateral*/
+class Vistas{
+  constructor(){
+    document.getElementById('MenuRoot').addEventListener('click',this.whoiam);
+  } 
+  whoiam(e){
+    let Iam=e.target.id;
+    switch(Iam){
+      case 'Home':
+        window.location='http://localhost:8080/index.html';
+      break;
+      case 'Pay': 
+        alert('Por el momento solo contamos con metodo paypal y mercado Pago, si vives en Arg solamente mediante paypal por inconvenientes de terceros en mercado pago')
+        /*window.location='http://localhost:8080/pay.html';*/
+      break;
+      case 'Contact': 
+        alert('Área en desarrollo, contactanos en nuestras redes sociales.Gracias por su comprensión');
+        /*window.location='http://localhost:8080/contact.html';*/
+      break;
+      case 'AboutUs':
+        window.location='http://localhost:8080/aboutUs.html';
+      break;
+      case 'Promo': 
+        alert('Todas nuestras plantillas sin edición cuentan con descuento.');
+        /*window.location='http://localhost:8080/promo.html';*/
+      break;
+      case 'Questions':
+        alert('Área en desarrollo deja tus preguntas en nueatras redes sociales. Gracias por su comprensión');
+        /*window.location='http://localhost:8080/questions.html';*/
+      break;
+    }
+  }
+} 
+
 //Press
 /*Clase encargada de ubicar el elemento clickeado*/
 export class Press extends Menus{
@@ -1184,4 +1249,34 @@ export class Press extends Menus{
         }
       }
     }
+  } 
+  
+//pie 
+/*Crea el pie de pagina de nuestro sitio*/
+export class Pie{
+  constructor(){
+    let footer=document.createElement('FOOTER');
+    let logo=document.createElement('IMG');
+    let company=document.createElement('P');
+    let ulSocial=document.createElement('UL');
+    let liInsta=document.createElement('LI');
+    let liFacebook=document.createElement('LI');
+    let liTerminos=document.createElement('LI');
+    let liPoliticas=document.createElement('LI'); 
+    logo.src='./upload/FGCLogo.png';
+    company.innerHTML='FoxyGamerCompany'; 
+    liFacebook.innerHTML='Facebook';
+    liInsta.innerHTML='Instagram';
+    liTerminos.innerHTML='Terminos y Condiciones';
+    liPoliticas.innerHTML='Politica de Privacidad'; 
+    footer.className='pie'; 
+    document.getElementById('bodyA').appendChild(footer); 
+    footer.append(logo);
+    footer.append(company);
+    company.append(ulSocial);
+    ulSocial.append(liInsta);
+    ulSocial.append(liFacebook);
+    ulSocial.append(liTerminos);
+    ulSocial.append(liPoliticas);
   }
+} 
