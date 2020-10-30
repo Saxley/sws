@@ -184,6 +184,9 @@ background-color: #444444;
   display: none;
 } 
 /*____________________ABOUT US_______________*/
+body{
+  background: #ff9911DE;
+} 
 .aboutUs{
   box-sizing:border-box;
   width:100%;
@@ -195,9 +198,6 @@ background-color: #444444;
   font-size:calc(.8em + .4vh);
   padding-left: 10%;
   padding-right: 10%;
-} 
-body{
-  background: #ff9911DE;
 } 
 .pie{ 
   display:grid; 
@@ -226,4 +226,35 @@ body{
   font-family: Consolas;
   text-align: center;
   color:#000000;
+}
+/*_________________ANIMACIONES_______________*/
+.container{ 
+  box-sizing: border-box;
+  margin-left:25%; 
+  border-top:10px solid #ffcc99; 
+  border-radius: 100%;
+  text-align:center; 
+  height:25vh;
+  width:45vw;
+  animation-name: girar; 
+  animation-duration: 1000ms; 
+  animation-iteration-count: infinite;
+} 
+.containerC{ 
+  box-sizing: border-box;
+  width: 100%; 
+  height:100%;
+  padding;5%;
+  background: #bbbbbb55; 
+}
+@keyframes girar{
+  0%{
+  transform:rotate(0deg) 
+  } 
+  50%{
+  border-top:1px solid #ffbb00;
+  }
+  100%{ 
+  transform:rotate(360deg)  
+  } 
 }

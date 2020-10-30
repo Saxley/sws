@@ -1129,6 +1129,10 @@ class Menus{
         this.navCatalogo.append(pago); 
         this.navCatalogo.style='font-size:1em'; 
         }else{ 
+        const cargar=new Animations();
+        this.navCatalogo.style='display:none';
+        cargar.charge(); 
+        cargar.trasladarCenter('containerC'); 
         if(document.getElementById('intoEmail').value!='' && document.getElementById('intoComment').value!=''){ 
         const url="http://localhost:8080/interfazSociophp/pedidos.php";
         let datos=new FormData(); 
@@ -1143,6 +1147,7 @@ class Menus{
        .then(response =>{ 
          data=response.json()
          .then(data=>{  
+           cargar.drop('containerC');
            while(this.navCatalogo.children.length>0){
               this.navCatalogo.children[0].remove();
             } 
@@ -1279,4 +1284,38 @@ export class Pie{
     ulSocial.append(liTerminos);
     ulSocial.append(liPoliticas);
   }
+} 
+
+//Animations
+/*Almacena las animaciones que podemos usar*/
+class Animations{  
+ //charge::Tiene la animacion de cargando
+   charge(){
+    let container=document.createElement('DIV');
+    let containerC=document.createElement('DIV'); 
+    container.id='container';
+    containerC.id='containerC';
+    container.className='container';
+    containerC.className='containerC';
+    document.body.append(containerC); 
+    containerC.append(container);  
+   }  
+ //trasladarCenter::traslada las animaciones al centro de la pantalla.
+   trasladarCenter(id){ 
+     let container=document.getElementById(id); 
+     let alto=document.body.offsetHeight; 
+     let ope=(alto*-1)+(alto/2);
+     ope=ope.toString();
+     let actual=container.style.cssText; 
+     actual=actual+'transform:translate(0px,'+ope+'px)';
+     container.style=actual;
+     console.log(actual);
+   }  
+ //drop::Borra las animaciones por id
+   drop(id){
+    while(document.getElementById(id).children>0){
+      document.getElementById(id).children[0].remove();
+    } 
+    document.getElementById(id).remove();
+   }
 } 
