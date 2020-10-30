@@ -11,7 +11,7 @@ class soporte {
   }
   public function message($contacto, $freeMessage, $metodo, $comment,$email){
       $COMPANY = 'foxyGamerCompany';
-      $Pass = 'f0xy?1234';
+      $Pass = 'nhqcqlfqbmvvmbko';
       if(empty($email)){
         $email = 'luisarriagacarranza@gmail.com';
         $asunto = "NUEVO PEDIDO de $contacto";

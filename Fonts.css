@@ -244,7 +244,7 @@ body{
   box-sizing: border-box;
   width: 100%; 
   height:100%;
-  padding;5%;
+  padding:5%;
   background: #bbbbbb55; 
 }
 @keyframes girar{
