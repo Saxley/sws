@@ -5,7 +5,7 @@ height:calc(1vh*15);width:calc(1vw*27);border:1px solid black;border-radius:calc
 nav{ 
   box-sizing: border-box;
   width:40vw;
-  height:calc(4em + 4vw);
+  height:calc(4em + 4vw); 
 }
 nav > ul{
   box-sizing: border-box;
