@@ -31,7 +31,7 @@ ul{
 .menuPrincipal > li:hover{
  background: #eeeeee33;
  border-radius: 10px;
- border:none;
+ border:none; 
 }
 /*ENCABEZDO*/
 .encabezado{
@@ -50,6 +50,7 @@ height:7vh;width:10vh;
   height:flex;
 }
 .catalogo_grid > nav {
+  background: #ff9911DE;
   width:100%;
   padding-left:5%;
   padding-right:4%;

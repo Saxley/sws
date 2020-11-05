@@ -83,7 +83,7 @@ export class AddNewScript{
     } 
     //Pull::Envia los archivos a la base de datos 
     else if(this.innerHTML=="Pull"){ 
-      const envio=new AddNewScript;
+      const envio=new AddNewScript();
      let spans=document.getElementsByTagName("SPAN");
       let arregloIds=[];
       for(let c=0;c<spans.length;c++){
@@ -95,7 +95,7 @@ export class AddNewScript{
     } 
     //send::Envia las imagenes de muestra
     else if(this.innerHTML=="send"){ 
-      const envio=new AddNewScript;
+      const envio=new AddNewScript();
       envio.sending('imgFile','nameScript');
     }
   }
@@ -103,9 +103,9 @@ export class AddNewScript{
   sending(archive,where){ 
     let img=document.getElementById(archive);
     let txt=document.getElementById(where);
-    
-    const url = "https://sedated-davit.000webhostapp.com/interfazSociophp/subir.php";
+    const url = "http://localhost:8080/interfazSociophp/subir.php";
     let datos=new FormData();
+
    datos.append("archivito", img.files[0]); 
     if(txt!=null){  
       datos.append("imagen", txt.value);
