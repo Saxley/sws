@@ -129,10 +129,10 @@
 </div>
 <script>
   let video = document.getElementById('muestra');
-  video.src = "shopwebstore.000webhostapp.com/upload/dblclick0.mp4"
+  video.src = "http://shopwebstore.000webhostapp.com/upload/dblclick0.mp4"
   setTimeout(loop, 1000);
   function loop() {
-    video.src == "shopwebstore.000webhostapp.com/upload/dblclick0.mp4" ? video.src = "shopwebstore.000webhostapp.com/upload/dblclick1.mp4": video.src = "shopwebstore.000webhostapp.com/upload/dblclick0.mp4";
+    video.src == "http://shopwebstore.000webhostapp.com/upload/dblclick0.mp4" ? video.src = "http://shopwebstore.000webhostapp.com/upload/dblclick1.mp4": video.src = "shopwebstore.000webhostapp.com/upload/dblclick0.mp4";
     setTimeout(loop, 1000);
   }
   class Vistas{
@@ -143,7 +143,7 @@
     let Iam=e.target.id;
     switch(Iam){
       case 'Home':
-        window.location='shopwebstore.000webhostapp.com/Home.html';
+        window.location='http://shopwebstore.000webhostapp.com/Home.html';
       break;
       case 'Pay': 
         alert('Por el momento solo contamos con metodo paypal y mercado Pago, si vives en Arg solamente mediante paypal por inconvenientes de terceros en mercado pago')
@@ -154,7 +154,7 @@
         /*window.location='shopwebstore.000webhostapp.com/contact.html';*/
       break;
       case 'AboutUs':
-        window.location='shopwebstore.000webhostapp.com/aboutUs.html';
+        window.location='http://shopwebstore.000webhostapp.com/aboutUs.html';
       break;
       case 'Promo': 
         alert('Todas nuestras plantillas sin edición cuentan con descuento.');
