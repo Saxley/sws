@@ -115,7 +115,7 @@
 <div id='instruction' class='instruction'>
   <h1 class='tittle'>Bienvenid@</h1>
   <p class='text'>
-    Obten tu pagina web a un precio totalmente bajo. <br><center><button type="button">Comenzar</button></center>
+    Obten tu pagina web a un precio totalmente bajo. <br><center><button id="web" type="button">Comenzar</button></center>
   </p>
   <center><b><p class='text'>
     Para ver si una plantilla es de tu agrado, basta con que entres a ella, des un doble click en cualquiera de sus elementos y cambies los estilos, colores, agreges o remuevas los elememtos.<br>Contamos con mas de 100 fuentes para que apliques en tus textos y una vez que te hayas decidido, da click en comprar. Nosotros nos pondremos en contacto en cuestion de segundos.<br><div class="video">
@@ -166,7 +166,8 @@
       break;
     }
   }
-} 
+}  
+  document.getElementById('web').addEventListener('click',window.location='shopwebstore.000webhostapp.com/Home.html');
   document.getElementById('menuPrincipal').addEventListener('click', ()=> {
     let h = document.body.offsetHeight;
     let colocar;
