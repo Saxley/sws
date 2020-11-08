@@ -1,36 +1,220 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
-  <link rel='stylesheet' href='Fonts.css'>
-  <title>Shop Web Store</title>
+  <style>
+    ul {
+      list-style: none;
+    }
+    /*MENU PRINCIPAL*/
+    .menuPrincipal {
+      width: calc(100vw / 1.5);
+      background: #ff9911DE;
+      display: grid;
+      grid-template-rows: repeat(auto-fill, minmax(2em,1fr));
+      font-size: calc(1em + 1vh);
+    }
+    .menuPrincipal > li:hover {
+      background: #eeeeee33;
+      border-radius: 10px;
+      border: none;
+
+    }
+    /*ENCABEZDO*/
+    .encabezado {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      height: 7vh;
+      background: #ff9911;
+    }
+    .encabezado > p {
+      grid-column: 2 / span 3;
+      font-size: calc(2vh + 1vw);
+    }
+    .encabezado > img {
+      height: 7vh;
+      width: 10vh;
+    }
+    .instruction {
+      box-sizing: border-box;
+      width: 100%;
+      height: 80vh;
+      padding-left: 3%;
+      padding-right: 3%;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+    .text {
+      font-family: Helvetica, sans-serif;
+      font-size: calc(.5em + 1vh);
+      text-align: center;
+    }
+    .tittle {
+      text-align: center;
+      font-family: Helvetica, sans-serif;
+      font-size: calc(1em + 1vh);
+    }
+    .text > a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+    button {
+      font-family: Helvetica, sans-serif;
+      font-size: calc(1em + 1vh);
+      padding: 5px;
+      border-radius: 20px;
+      border-color: red;
+      color: black;
+      background: orange; 
+    }
+    .video {
+      box-sizing: border-box;
+      width: 80vw;
+      height: 70vh;
+    }
+    /*pie*/
+    .pie {
+      display: grid;
+      grid-template-columns: repeat( 2 , 1fr);
+      height: flex;
+      background-color: #ff9911ba;
+    }
+    .pie > img {
+      box-sizing: border-box;
+      border-radius: 100%;
+      width: 60%;
+      height: 90%;
+    }
+    .pie > p {
+      text-align: right;
+      font-family: Consolas;
+      color: black;
+      padding-right: 10%;
+      font-size: calc(.2em + 1vh);
+    }
+    .pie > p > ul > li {
+      box-sizing: border-box;
+      border-radius: 20px;
+      background: #ffbb11ee;
+      margin-bottom: 10px;
+      font-family: Consolas;
+      text-align: center;
+      color: #000000;
+    }
+  </style>
+  <title></title>
 </head>
 <body>
-  <div id='bodyA'>
-  <header id="header"class='encabezado'><img id='menuPrincipal'src='./MenuCatalogo.png'></img><p>Shop Web Stores</p>
-  </header>
-  <div id='catalogo_grid' class='catalogo_grid'>
-<div class='ocul' id='smart-button-container'><div style='text-align: center;'><div id='paypal-button-container'></div></div></div>
-  </div> 
-</div> 
-  <script src='dynamic.js' type='module'></script>  
-<script src='https://www.paypal.com/sdk/js?client-id=sb&currency=USD' data-sdk-integration-source='button-factory'></script>
+  <header id="header"class='encabezado'>
+    <img id='menuPrincipal'src='./MenuCatalogo.png'></img><p>
+    Shop Web Stores
+  </p>
+</header>
+<div id='instruction' class='instruction'>
+  <h1 class='tittle'>Bienvenid@</h1>
+  <p class='text'>
+    Obten tu pagina web a un precio totalmente bajo. <br><center><button type="button">Comenzar</button></center>
+  </p>
+  <center><b><p class='text'>
+    Para ver si una plantilla es de tu agrado, basta con que entres a ella, des un doble click en cualquiera de sus elementos y cambies los estilos, colores, agreges o remuevas los elememtos.<br>Contamos con mas de 100 fuentes para que apliques en tus textos y una vez que te hayas decidido, da click en comprar. Nosotros nos pondremos en contacto en cuestion de segundos.<br><div class="video">
+      <video width='80%' id="muestra" autoplay muted loop></video>
+    </div>
+  </p>
+  </b></center>
+  <p class='text'>
+    Somos <a class='link' id='link' href='https://shopwebstore.000webhostapp.com/'>Shop Web Store</a> una organización pequeña que se dedica a hacer paginas web a muy bajo precio, te buscamos el hosting que sea de tu preferencia y lo mejor es que puedes conseguir plantillas desde $9.00 dll,todas totalmemte optimizadas. Te hacemos una interfaz sencilla para que tu puedas llevar el control de tus ventas. Podemos inregrarte las herramientas de google para que aprezcas en su motor de busqueda.<br><br><a class="link" id='link2' href='https://shopwebstore.000webhostapp.com/aboutUs.html'>Shop Web Store</a> quiere ayudar a que todos aquellos negocios afectados por la pandemia puedan recuperarse en ventas, sin tener que pagar demasiado por una tienda online.<br><br>Tambien ofrecemos el mantenimiento de tu antigüa pagina web, la actualizamos y la hacemos adaptable para la mayoria de dispositivos.Así que si tienes una web un tanto lenta o que no se adapta a dispositivos moviles, puedes contactarnos y nosotros la actualizamos en un par de días. Los precios por mantenimiento a un sitio web van desde $20.00 dll a $50.00 dll.<br><br><a class="link" id='link1' href='https://shopwebstore.000webhostapp.com/'>Shop Web Store</a> te ayuda a encontar el hosting que cubra tus necesidades, aparte de que siempre pensamos en escalar, por lo cual cada uno de nuestros proyectos son escalables.<br><br>Si deseas hacer crecer tu negocio online, podras hacerlo sin problema alguno, cada una de nuestras plantillas viene comentada para que el siguiente desarrollador web no tenga retardos inecesarios. <br>
+  </p>
+</div>
 <script>
-function initPayPalButton() {
-  paypal.Buttons({
-    style: {
-      shape: 'rect',
-      color: 'silver',
-      layout: 'vertical',
-      label: 'pay',
-    },
-    createOrder: function(data, actions) {return actions.order.create({purchase_units: [{'description':'Página Web simple, su funcionalidad es mostrar productos para su compra.','amount':{'currency_code':'USD','value':10}}]});},
-    onApprove: function(data, actions) {return actions.order.capture().then(function(details) {alert('Transaction completed by ' + details.payer.name.given_name + '!');});},
-    onError: function(err) {
-      console.log(err);}}).render('#paypal-button-container');
+  let video = document.getElementById('muestra');
+  video.src = "https://shopwebstore.000webhostapp/upload/dblclick0.mp4"
+  setTimeout(loop, 1000);
+  function loop() {
+    video.src == "https://shopwebstore.000webhostapp/upload/dblclick0.mp4" ? video.src = "https://shopwebstore.000webhostapp/upload/dblclick1.mp4": video.src = "https://shopwebstore.000webhostapp/upload/dblclick0.mp4";
+    setTimeout(loop, 1000);
+  }
+  class Vistas{
+  constructor(){
+    document.getElementById('MenuRoot').addEventListener('click',this.whoiam);
+  } 
+  whoiam(e){
+    let Iam=e.target.id;
+    switch(Iam){
+      case 'Home':
+        window.location='https://shopwebstore.000webhostapp/Home.html';
+      break;
+      case 'Pay': 
+        alert('Por el momento solo contamos con metodo paypal y mercado Pago, si vives en Arg solamente mediante paypal por inconvenientes de terceros en mercado pago')
+        /*window.location='https://shopwebstore.000webhostapp/pay.html';*/
+      break;
+      case 'Contact': 
+        alert('Área en desarrollo, contactanos en nuestras redes sociales.Gracias por su comprensión');
+        /*window.location='https://shopwebstore.000webhostapp/contact.html';*/
+      break;
+      case 'AboutUs':
+        window.location='https://shopwebstore.000webhostapp/aboutUs.html';
+      break;
+      case 'Promo': 
+        alert('Todas nuestras plantillas sin edición cuentan con descuento.');
+        /*window.location='https://shopwebstore.000webhostapp/promo.html';*/
+      break;
+      case 'Questions':
+        alert('Área en desarrollo deja tus preguntas en nueatras redes sociales. Gracias por su comprensión');
+        /*window.location='https://shopwebstore.000webhostapp/questions.html';*/
+      break;
     }
-    initPayPalButton();
+  }
+} 
+  document.getElementById('menuPrincipal').addEventListener('click', ()=> {
+    let h = document.body.offsetHeight;
+    let colocar;
+    colocar = (this.menuPrincipal.height+h)*-1;
+    let menu = document.createElement('ul');
+    menu.id = 'MenuRoot';
+    menu.className = 'menuPrincipal';
+    document.body.append(menu);
+    let menuP = menu.style.cssText;
+    menu.style = menuP+'transform:translate(-5%,'+colocar+'px);height:100vh;border:1px solid black;padding-top:100px;';
+    menu.innerHTML = `<li id='Home'>Home</li><li id='Pay'>Pay</li><li id='Contact'>Contact</li><li id='AboutUs'>About us</li><li id='Questions'>Questions</li><li id='Promo'>Promo</li>`; 
+    const go= new Vistas();
+  });
+  document.getElementById('instruction').addEventListener('click', ()=> {
+    this.hidden();
+  });
+  function hidden() {
+    let menuRoot = document.getElementById('MenuRoot');
+    if (Boolean(menuRoot)) {
+      document.body.removeChild(menuRoot);
+    }
+  }
+  function Pie() {
+    let footer = document.createElement('FOOTER');
+    let logo = document.createElement('IMG');
+    let company = document.createElement('P');
+    let ulSocial = document.createElement('UL');
+    let liInsta = document.createElement('LI');
+    let liFacebook = document.createElement('LI');
+    let liTerminos = document.createElement('LI');
+    let liPoliticas = document.createElement('LI');
+    logo.src = './upload/FGCLogo.png';
+    company.innerHTML = 'FoxyGamerCompany';
+    liFacebook.innerHTML = 'Facebook';
+    liInsta.innerHTML = 'Instagram';
+    liTerminos.innerHTML = 'Terminos y Condiciones';
+    liPoliticas.innerHTML = 'Politica de Privacidad';
+    footer.className = 'pie';
+    document.body.appendChild(footer);
+    footer.append(logo);
+    footer.append(company);
+    company.append(ulSocial);
+    ulSocial.append(liInsta);
+    ulSocial.append(liFacebook);
+    ulSocial.append(liTerminos);
+    ulSocial.append(liPoliticas);
+  }
+  Pie(); 
 </script>
 </body>
 </html>

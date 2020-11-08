@@ -45,7 +45,7 @@ class googleFonts{
     link.setAttribute('href', l);
     body.appendChild(link);
     }else{
-      vocals=`<img src="https://sedated-davit.000webhostapp.com/upload/iconoPlus.ico" style='width:10vw;height:1em/2;'/>`;
+      vocals=`<img src="http://localhost:8080/upload/iconoPlus.ico" style='width:10vw;height:1em/2;'/>`;
     }
   //_________________Crea y agrega el link al head
     let element = document.createElement('li');
@@ -134,7 +134,7 @@ class SizeFont{
   addElement(num){
     let li = document.createElement('li');
     if(num==100){
-      li.innerHTML=`<img src="https://sedated-davit.000webhostapp.com/upload/iconoPlus.ico" style='width:7vw;height:1em;'/>`;
+      li.innerHTML=`<img src="http://localhost:8080/upload/iconoPlus.ico" style='width:7vw;height:1em;'/>`;
       li.value=num;
     }else{
       li.innerHTML=num;
@@ -320,7 +320,7 @@ class SetCreate{
       case 'IMAGEN':
         this.objeto={
           object: 'IMG',
-          url: 'https://sedated-davit.000webhostapp.com/upload/ImagenMuestra.png',
+          url: 'http://localhost:8080/upload/ImagenMuestra.png',
           id: 'FoxyImage',
           className: 'imageNew'
         }; 
@@ -1210,7 +1210,7 @@ class Vistas{
     let Iam=e.target.id;
     switch(Iam){
       case 'Home':
-        window.location='https://sedated-davit.000webhostapp.com/index.html';
+        window.location='http://localhost:8080/Home.html';
       break;
       case 'Pay': 
         alert('Por el momento solo contamos con metodo paypal y mercado Pago, si vives en Arg solamente mediante paypal por inconvenientes de terceros en mercado pago')
@@ -1221,7 +1221,7 @@ class Vistas{
         /*window.location='http://localhost:8080/contact.html';*/
       break;
       case 'AboutUs':
-        window.location='https://sedated-davit.000webhostapp.com/aboutUs.html';
+        window.location='http://localhost:8080/aboutUs.html';
       break;
       case 'Promo': 
         alert('Todas nuestras plantillas sin edición cuentan con descuento.');

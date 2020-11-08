@@ -103,7 +103,7 @@ export class AddNewScript{
   sending(archive,where){ 
     let img=document.getElementById(archive);
     let txt=document.getElementById(where);
-    const url = "http://localhost:8080/interfazSociophp/subir.php";
+    const url = "https://shopwebstore.000webhostapp.com/interfazSociophp/subir.php";
     let datos=new FormData();
 
    datos.append("archivito", img.files[0]); 
