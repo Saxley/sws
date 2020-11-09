@@ -1282,7 +1282,18 @@ export class Pie{
     ulSocial.append(liInsta);
     ulSocial.append(liFacebook);
     ulSocial.append(liTerminos);
-    ulSocial.append(liPoliticas);
+    ulSocial.append(liPoliticas); 
+    footer.addEventListener('click',this.redes);
+  } 
+  redes(e){
+   switch(e.target.outerText){
+      case 'Instagram':   
+        window.open('https://www.instagram.com/shopwebstore2020/?hl=es-la','Shop Web Store');
+        break;
+      case 'Facebook':
+        window.open('https://www.facebook.com/ShopWebSt0re/','Shop Web Store');
+        break;
+    }
   }
 } 
 
